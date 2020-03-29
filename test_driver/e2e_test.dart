@@ -10,6 +10,9 @@ void main() {
     final counterTextFinder = find.byValueKey('counterText');
     final buttonFinder = find.byTooltip('Increment');
     final subtractButton = find.byValueKey('subtract');
+    final alertButton = find.byValueKey('alert');
+    final alertBoxText = find.byValueKey('alert_text');
+    final alertBoxCloseButton = find.byValueKey('alertClose_Button');
 
     FlutterDriver driver;
 
@@ -44,6 +47,17 @@ void main() {
 
       // Then, verify the counter text is incremented by 1.
       expect(await driver.getText(counterTextFinder), "0");
+    });
+
+    test('alert box functioning', () async {
+      //First, initiate the Alert Box
+      await driver.tap(alertButton);
+
+      //Second, verify that text in the alert box is valid.
+      expect(await driver.getText(alertBoxText), "Welcome to Flutter Automation 0");
+
+      //Close the alert box.
+      await driver.tap(alertBoxCloseButton);
     });
   });
 }

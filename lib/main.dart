@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new FlatButton(
               child: new Text(
                 "Close",
-                key: ValueKey("close_button"),
+                key: ValueKey("alertClose_Button"),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -87,14 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 new RaisedButton(
-                  key: Key("add"),
+                  key: Key("alert"),
                   padding: const EdgeInsets.all(8.0),
                   textColor: Colors.white,
                   color: Colors.blue,
                   onPressed: () {
                     _showDialog();
                   },
-                  child: new Text("Add"),
+                  child: new Text("Alert"),
                 ),
                 new RaisedButton(
                   key: Key("subtract"),
