@@ -7,8 +7,9 @@ void main() {
     // First, define the Finders and use them to locate widgets from the
     // test suite. Note: the Strings provided to the `byValueKey` method must
     // be the same as the Strings we used for the Keys in step 1.
-    final counterTextFinder = find.byValueKey('counter');
+    final counterTextFinder = find.byValueKey('counterText');
     final buttonFinder = find.byTooltip('Increment');
+    final subtractButton = find.byValueKey('subtract');
 
     FlutterDriver driver;
 
@@ -29,12 +30,20 @@ void main() {
       expect(await driver.getText(counterTextFinder), "0");
     });
 
+    test('negative value is shown as well', () async {
+      //Set the counter to negative value by tapping "Subtract" button.
+      await driver.tap(subtractButton);
+
+      //Then, confirm that negative value is shown in the counter bar.
+      expect(await driver.getText(counterTextFinder), contains('-'));
+    });
+
     test('increments the counter', () async {
       // First, tap the button.
       await driver.tap(buttonFinder);
 
       // Then, verify the counter text is incremented by 1.
-      expect(await driver.getText(counterTextFinder), "1");
+      expect(await driver.getText(counterTextFinder), "0");
     });
   });
 }
